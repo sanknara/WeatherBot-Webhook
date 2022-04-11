@@ -41,8 +41,10 @@ def makeResponse(req):
             condition= weather[i]['weather'][0]['description']
             break
     speech = "The forecast for"+city+ "for "+date+" is "+condition
-   return { "fulfillmentText": speech }
-
+    return {
+    "fulfillmentText": speech
+    }
+    
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
