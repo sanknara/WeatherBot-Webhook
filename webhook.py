@@ -17,7 +17,7 @@ def webhook():
     res = makeResponse(req)
     
     res = json.dumps(res, indent=4)
-    # print(res)
+    print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -28,8 +28,13 @@ def makeResponse(req):
     result = req.get("queryResult")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
+    print("debug log")
+    print(city)
     date = parameters.get("date")
+    print(date)
     date = date[:10]
+    print(date)
+    print("debug log")
     if city is None:
         return None
     r=requests.get('http://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid=3f0387334624d977b626208dde397bcd')
@@ -39,8 +44,10 @@ def makeResponse(req):
     for i in range(0,30):
         if date in weather[i]['dt_txt']:
             condition= weather[i]['weather'][0]['description']
+            print(condition)
             break
     speech = "The forecast for"+city+ "for "+date+" is "+condition
+    print(speech)
     return {
     "fulfillmentText": speech
     }
