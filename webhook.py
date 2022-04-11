@@ -41,11 +41,13 @@ def makeResponse(req):
     json_object = r.json()
     weather=json_object['list']
     condition= "?"
-    for i in range(0,30):
+    for i in len(weather):
         if date in weather[i]['dt_txt']:
             condition= weather[i]['weather'][0]['description']
             print(condition)
             break
+    if condition == "?":
+        condition = weather[0]['weather'][0]['description']
     speech = "The forecast for"+city+ "for "+date+" is "+condition
     print(speech)
     return {
