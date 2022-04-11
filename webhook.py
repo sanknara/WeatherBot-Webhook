@@ -28,7 +28,7 @@ def makeResponse(req):
     result = req.get("queryResult")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
-    date = parameters.get("date-time")
+    date = parameters.get("date")
     date = date[:10]
     if city is None:
         return None
