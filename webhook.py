@@ -46,7 +46,7 @@ def makeResponse(req):
             break
     if condition == "?" and len(weather) != 0:
         condition = weather[0]['weather'][0]['description']
-    speech = "The forecast for"+city+ "for "+date+" is "+condition
+    speech = "The forecast for "+city+ " for "+date+" is "+condition
     print(speech)
     return {
     "fulfillmentText": speech
